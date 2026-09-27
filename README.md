@@ -1,5 +1,7 @@
 # Filmkveld 1.2.1 — ferdig Docker-image for NAS
 
+**Bruker du Portainer? Start her: [stegvis oppsett med kopierbar Compose og feilsøking](PORTAINER.md).**
+
 Imaget heter **`filmkveld:1.2.1`**. Last ned og importer én imagefil; Compose skal ikke bygge noe eller hente Filmkveld fra et registry.
 
 - [Last ned image og oppsett](https://github.com/Martinpy97/filmkveld/releases/tag/v1.2.1)
