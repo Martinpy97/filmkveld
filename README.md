@@ -114,3 +114,17 @@ Se `VERIFICATION.json` for faktisk imagebygg, eksport/import, arkitektur, HTTP-k
 - [Portainer: Import an image](https://docs.portainer.io/user/docker/images/import)
 - [Docker: image load](https://docs.docker.com/reference/cli/docker/image/load/)
 - [Portainer: Add a stack](https://docs.portainer.io/user/docker/stacks/add)
+
+
+## Ikoner som PNG
+
+Begge ikonene er 512 × 512 piksler med gjennomsiktig bakgrunn, eksportert fra ikonene som allerede brukes på Filmkveld-siden.
+
+| Ikon | Last ned PNG |
+|---|---|
+| Grønn filmklapper ved Filmkveld-navnet | [filmkveld-icon.png](https://raw.githubusercontent.com/Martinpy97/filmkveld/codex/public-release/assets/filmkveld-icon.png) |
+| Grønn hake fra nettleserfanen | [filmkveld-favicon.png](https://raw.githubusercontent.com/Martinpy97/filmkveld/codex/public-release/assets/filmkveld-favicon.png) |
+
+![Filmkveld-ikon](assets/filmkveld-icon.png)
+
+Filmklapperen bruker Lucide-ikonet fra appen; lisensnotiser finnes i [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt).
