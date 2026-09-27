@@ -1,0 +1,70 @@
+{
+  "date": "2026-09-27",
+  "version": "1.2.0",
+  "image": "filmkveld:1.2.0",
+  "runtime": {
+    "node": "24.19.0",
+    "docker": "29.8.0",
+    "compose": "v5.5.1",
+    "host": "Docker Desktop linux/arm64",
+    "amd64_execution": "emulated on ARM64"
+  },
+  "checks": {
+    "clean_npm_ci": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "application_tests": "58/58 passed",
+    "compose_local_and_nas_custom_port": "passed",
+    "container_checks": [
+      {
+        "platform": "linux/amd64",
+        "archive": "filmkveld-1.2.0-linux-amd64.tar.gz",
+        "loaded_from_archive": true,
+        "runtime_arch": "x64",
+        "image_id": "sha256:63c012b5973c1ee1cdd6900067575e9f9555c849b52cf7d9c160cf3fd8cc8688",
+        "healthy": true,
+        "non_root": true,
+        "read_only_root": true,
+        "fresh_collection_empty": true,
+        "nas_http_suite": "15/15 passed",
+        "data_survives_container_replacement": true
+      },
+      {
+        "platform": "linux/arm64",
+        "archive": "filmkveld-1.2.0-linux-arm64.tar.gz",
+        "loaded_from_archive": true,
+        "runtime_arch": "arm64",
+        "image_id": "sha256:9f214d196deebcff7d0a463fe3cc451e9728a77eeebdbe0e06c506e562861a6c",
+        "healthy": true,
+        "non_root": true,
+        "read_only_root": true,
+        "fresh_collection_empty": true,
+        "nas_http_suite": "15/15 passed",
+        "data_survives_container_replacement": true
+      }
+    ],
+    "database_migrations": "unchanged",
+    "frontend_assets": "unchanged"
+  },
+  "image_archives": [
+    {
+      "file": "filmkveld-1.2.0-linux-amd64.tar.gz",
+      "bytes": 118069039,
+      "sha256": "e4fa7cd53e90cfde1d6fd4534f9abe9ee36a937c33e1233af37ea6d59b634497"
+    },
+    {
+      "file": "filmkveld-1.2.0-linux-arm64.tar.gz",
+      "bytes": 117804900,
+      "sha256": "b87965490ac86b1668478ff1a5361820fc453093dfa7eb45c39277d8ddf615d8"
+    }
+  ],
+  "not_verified": [
+    "Synology hardware",
+    "DSM installation",
+    "Portainer UI import on user NAS",
+    "user NAS model/CPU/version",
+    "real external HTTPS reverse proxy"
+  ],
+  "personal_data_included": false,
+  "distribution": "Original tested Docker image archives, unchanged; public setup documentation."
+}
