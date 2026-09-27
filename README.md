@@ -1,11 +1,17 @@
-# Filmkveld 1.2.0 — ferdig Docker-image for NAS
+# Filmkveld 1.2.1 — ferdig Docker-image for NAS
 
-Imaget heter **`filmkveld:1.2.0`**. Last ned og importer én imagefil; Compose skal ikke bygge noe eller hente Filmkveld fra et registry.
+Imaget heter **`filmkveld:1.2.1`**. Last ned og importer én imagefil; Compose skal ikke bygge noe eller hente Filmkveld fra et registry.
 
-- [Last ned image og oppsett](https://github.com/Martinpy97/filmkveld/releases/tag/v1.2.0)
+- [Last ned image og oppsett](https://github.com/Martinpy97/filmkveld/releases/tag/v1.2.1)
 - [Compose](compose.yaml), [eksempel på innstillinger](.env.example), [kontrollresultater](VERIFICATION.json)
 
 Dette repositoryet er offentlig. Imagefilene kan lastes ned uten GitHub-innlogging. Repositoryet inneholder Compose og veiledning; ferdige Docker-images ligger under Releases. GitHubs automatiske «Source code»-arkiver inneholder dette oppsettet, ikke Docker-images.
+
+## Rettelse i 1.2.1
+
+Denne utgaven retter en feil der «Legg til film» ga helt blank side ved vanlig HTTP til NAS-en. Containeren kunne samtidig være «healthy»: helsesjekken tester serveren, ikke nettleserens JavaScript. Egne filmer og eksisterende film-ID-er beholdes.
+
+Har du 1.2.0 fra før: ta backup som beskrevet nedenfor, importer riktig 1.2.1-image og endre bare `image:` til `filmkveld:1.2.1` i din eksisterende stack. Behold NAS-IP, port og volumet `filmkveld-data`. Oppdater stacken uten tvungen image-nedlasting, og last nettsiden på nytt. Det er ingen databasemigrering i denne rettelsen.
 
 ## 1. Velg riktig image
 
@@ -13,23 +19,23 @@ NAS-en må støtte Docker/Container Manager. Kjør eventuelt `uname -m` i NAS-en
 
 | Resultat / CPU | Last ned |
 |---|---|
-| `x86_64`, Intel eller AMD 64-bit | `filmkveld-1.2.0-linux-amd64.tar.gz` |
-| `aarch64`, ARM 64-bit | `filmkveld-1.2.0-linux-arm64.tar.gz` |
+| `x86_64`, Intel eller AMD 64-bit | `filmkveld-1.2.1-linux-amd64.tar.gz` |
+| `aarch64`, ARM 64-bit | `filmkveld-1.2.1-linux-arm64.tar.gz` |
 
 Eldre 32-bit ARM-utgaver støttes ikke av disse imagene. Begge arkitekturene bruker samme image-navn, så importer bare den som passer din NAS.
 
-Last også ned `filmkveld-nas-1.2.0.zip` med Compose og veiledning. `SHA256SUMS.txt` gir kontrollsummer for begge images og oppsettspakken.
+Last også ned `filmkveld-nas-1.2.1.zip` med Compose og veiledning. `SHA256SUMS.txt` gir kontrollsummer for begge images og oppsettspakken.
 
 ## 2. Importer i Portainer
 
 1. Velg Docker-miljøet som kjører på NAS-en.
 2. Åpne **Images → Import → Select file**, velg riktig `.tar.gz` og trykk **Upload**.
-3. Bekreft at image-listen viser **`filmkveld:1.2.0`**. Hvis Portainer ber om en tag, velg **Advanced mode** og skriv dette navnet.
+3. Bekreft at image-listen viser **`filmkveld:1.2.1`**. Hvis Portainer ber om en tag, velg **Advanced mode** og skriv dette navnet.
 
 Alternativt, last opp imagefilen til NAS-en med File Station og kjør på NAS-en (eksempel for Intel/AMD):
 
 ```sh
-sudo docker load --input /volume1/docker/filmkveld/filmkveld-1.2.0-linux-amd64.tar.gz
+sudo docker load --input /volume1/docker/filmkveld/filmkveld-1.2.1-linux-amd64.tar.gz
 ```
 
 Bruk `docker load`, ikke `docker import`: Docker-arkivet inneholder startkommando, bruker, helsesjekk og andre imageinnstillinger som skal beholdes.
@@ -83,7 +89,9 @@ Oppdatering: ta backup, importer et nytt image, endre taggen under `image:` og k
 
 ## Hvis noe feiler
 
-- `image ... not found`: importer riktig image i samme Docker-miljø først; navnet må være `filmkveld:1.2.0`.
+- Blank side etter «Legg til film» i 1.2.0: oppdater til 1.2.1 som beskrevet over.
+- Blank side allerede ved åpning: åpne `http://DIN-NAS-IP:PORT`, kontroller NAS-IP/port i stacken og se etter feilmeldinger i nettleserens konsoll (F12 → Console). «Healthy» alene bekrefter ikke at nettleseren har lastet siden.
+- `image ... not found`: importer riktig image i samme Docker-miljø først; navnet må være `filmkveld:1.2.1`.
 - `exec format error`: imagearkitekturen passer ikke NAS-en.
 - `cannot assign requested address`: `NAS_IP` må være en IP som faktisk tilhører NAS-en.
 - «Adressen er ikke tillatt»: åpne nøyaktig adressen som står i Compose. Et annet vertsnavn må legges eksplisitt til i `FILMKVELD_ALLOWED_ORIGINS`, for eksempel `http://192.168.1.50:8787,http://nas.local:8787`. Behold listen over tillatte adresser; ikke bruk jokertegn.

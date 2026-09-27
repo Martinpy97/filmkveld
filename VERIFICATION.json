@@ -1,7 +1,5 @@
 {
   "date": "2026-09-27",
-  "version": "1.2.0",
-  "image": "filmkveld:1.2.0",
   "runtime": {
     "node": "24.19.0",
     "docker": "29.8.0",
@@ -9,55 +7,6 @@
     "host": "Docker Desktop linux/arm64",
     "amd64_execution": "emulated on ARM64"
   },
-  "checks": {
-    "clean_npm_ci": "passed",
-    "typecheck": "passed",
-    "production_build": "passed",
-    "application_tests": "58/58 passed",
-    "compose_local_and_nas_custom_port": "passed",
-    "container_checks": [
-      {
-        "platform": "linux/amd64",
-        "archive": "filmkveld-1.2.0-linux-amd64.tar.gz",
-        "loaded_from_archive": true,
-        "runtime_arch": "x64",
-        "image_id": "sha256:63c012b5973c1ee1cdd6900067575e9f9555c849b52cf7d9c160cf3fd8cc8688",
-        "healthy": true,
-        "non_root": true,
-        "read_only_root": true,
-        "fresh_collection_empty": true,
-        "nas_http_suite": "15/15 passed",
-        "data_survives_container_replacement": true
-      },
-      {
-        "platform": "linux/arm64",
-        "archive": "filmkveld-1.2.0-linux-arm64.tar.gz",
-        "loaded_from_archive": true,
-        "runtime_arch": "arm64",
-        "image_id": "sha256:9f214d196deebcff7d0a463fe3cc451e9728a77eeebdbe0e06c506e562861a6c",
-        "healthy": true,
-        "non_root": true,
-        "read_only_root": true,
-        "fresh_collection_empty": true,
-        "nas_http_suite": "15/15 passed",
-        "data_survives_container_replacement": true
-      }
-    ],
-    "database_migrations": "unchanged",
-    "frontend_assets": "unchanged"
-  },
-  "image_archives": [
-    {
-      "file": "filmkveld-1.2.0-linux-amd64.tar.gz",
-      "bytes": 118069039,
-      "sha256": "e4fa7cd53e90cfde1d6fd4534f9abe9ee36a937c33e1233af37ea6d59b634497"
-    },
-    {
-      "file": "filmkveld-1.2.0-linux-arm64.tar.gz",
-      "bytes": 117804900,
-      "sha256": "b87965490ac86b1668478ff1a5361820fc453093dfa7eb45c39277d8ddf615d8"
-    }
-  ],
   "not_verified": [
     "Synology hardware",
     "DSM installation",
@@ -66,5 +15,97 @@
     "real external HTTPS reverse proxy"
   ],
   "personal_data_included": false,
-  "distribution": "Original tested Docker image archives, unchanged; public setup documentation."
+  "version": "1.2.1",
+  "image": "filmkveld:1.2.1",
+  "checks": {
+    "typecheck": "passed",
+    "production_build": "passed",
+    "application_tests": "58/58 passed",
+    "compose_nas_custom_port": "passed",
+    "container_checks": [
+      {
+        "platform": "linux/amd64",
+        "archive": "filmkveld-1.2.1-linux-amd64.tar.gz",
+        "loaded_from_archive": true,
+        "runtime_arch": "x64",
+        "image_id": "sha256:7f5a720b7730a0e0d90193927cc00e00917f6c8f8c0eb2279d68cd839b02e2d4",
+        "healthy": true,
+        "non_root": true,
+        "read_only_root": true,
+        "fresh_collection_empty": true,
+        "nas_http_suite": "15/15 passed",
+        "data_survives_container_replacement": true,
+        "insecure_http_browser": {
+          "http_status": 200,
+          "secure": false,
+          "randomUUID": "undefined",
+          "create": true,
+          "reload": true,
+          "edit": true,
+          "persisted_in_api": true,
+          "valid_uuid_v4": true,
+          "page_errors": []
+        }
+      },
+      {
+        "platform": "linux/arm64",
+        "archive": "filmkveld-1.2.1-linux-arm64.tar.gz",
+        "loaded_from_archive": true,
+        "runtime_arch": "arm64",
+        "image_id": "sha256:312c1ee228f542ac156eb9456334664775112404296b49244823e19e2487577e",
+        "healthy": true,
+        "non_root": true,
+        "read_only_root": true,
+        "fresh_collection_empty": true,
+        "nas_http_suite": "15/15 passed",
+        "data_survives_container_replacement": true,
+        "insecure_http_browser": {
+          "http_status": 200,
+          "secure": false,
+          "randomUUID": "undefined",
+          "create": true,
+          "reload": true,
+          "edit": true,
+          "persisted_in_api": true,
+          "valid_uuid_v4": true,
+          "page_errors": []
+        }
+      }
+    ],
+    "database_migrations": "unchanged from 1.2.0",
+    "frontend_assets": "rebuilt with HTTP-compatible UUID generation",
+    "upgrade_1_2_0_to_1_2_1": {
+      "platform": "linux/arm64",
+      "old_version_seeded_by": "15/15 NAS HTTP tests in temporary volume",
+      "custom_movies_queue_and_watched_unchanged": true,
+      "new_container_started_healthy": true,
+      "database_migrations_unchanged": true
+    }
+  },
+  "image_archives": [
+    {
+      "file": "filmkveld-1.2.1-linux-amd64.tar.gz",
+      "bytes": 118067213,
+      "sha256": "e94af176b1acac32732e7f697b539e97fd7fcc63373d08a0d8397a870a3427b5"
+    },
+    {
+      "file": "filmkveld-1.2.1-linux-arm64.tar.gz",
+      "bytes": 117806190,
+      "sha256": "5061baed8e505c81ab3b108c49553a1ad24b38fb3226e58c255691a8ca9b2885"
+    }
+  ],
+  "fixed_failure": {
+    "previous_version": "1.2.0",
+    "reproduced_on_plain_http": true,
+    "initial_render": "passed",
+    "trigger": "Open Legg til film",
+    "error": "crypto.randomUUID is not a function",
+    "react_root_children_after_error": 0,
+    "cause": "randomUUID requires a secure context; getRandomValues supports insecure HTTP",
+    "references": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues"
+    ]
+  },
+  "scope": "Tests use disposable data on Docker Desktop. Friend reports healthy with blank page; exact initial symptom/URL has not been confirmed. No Synology installation."
 }

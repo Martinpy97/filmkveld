@@ -1,7 +1,7 @@
 name: filmkveld
 services:
   filmkveld:
-    image: filmkveld:1.2.0
+    image: filmkveld:1.2.1
     pull_policy: never
     environment:
       FILMKVELD_ALLOWED_ORIGINS: "http://${NAS_IP:?Sett NAS_IP i .env}:${FILMKVELD_PORT:-8787}"
