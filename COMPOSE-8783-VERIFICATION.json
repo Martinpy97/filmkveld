@@ -1,0 +1,13 @@
+{
+  "date": "2026-09-27",
+  "image": "filmkveld:1.2.1",
+  "external_port": 8783,
+  "internal_port": 8787,
+  "configuration": "Literal environment and ports in Compose; no .env or Portainer interpolation variables. Example NAS IP must be replaced twice.",
+  "runtime_image_changed": false,
+  "volume": "filmkveld-data",
+  "verification": "Docker Compose v5.5.1 config passed with empty env file and NAS_IP/FILMKVELD_PORT unset; port, origin, image and unchanged named volume verified. Embedded full Compose in guide is byte-identical.",
+  "not_verified": [
+    "recipient NAS installation"
+  ]
+}

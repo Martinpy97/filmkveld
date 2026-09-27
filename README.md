@@ -5,9 +5,13 @@
 Imaget heter **`filmkveld:1.2.1`**. Last ned og importer én imagefil; Compose skal ikke bygge noe eller hente Filmkveld fra et registry.
 
 - [Last ned image og oppsett](https://github.com/Martinpy97/filmkveld/releases/tag/v1.2.1)
-- [Compose](compose.yaml), [eksempel på innstillinger](.env.example), [kontrollresultater](VERIFICATION.json)
+- [Compose](compose.yaml), [kontrollresultater](VERIFICATION.json)
 
 Dette repositoryet er offentlig. Imagefilene kan lastes ned uten GitHub-innlogging. Repositoryet inneholder Compose og veiledning; ferdige Docker-images ligger under Releases. GitHubs automatiske «Source code»-arkiver inneholder dette oppsettet, ikke Docker-images.
+
+## Oppsett med port 8783
+
+Compose og Portainer-guiden bruker nå direkte innstillinger under `environment:` og port **8783**. Du trenger ingen ekstra Portainer-variabler. Har du allerede `filmkveld:1.2.1`, holder det å oppdatere stackens Compose; behold volumet `filmkveld-data`.
 
 ## Rettelse i 1.2.1
 
@@ -26,7 +30,7 @@ NAS-en må støtte Docker/Container Manager. Kjør eventuelt `uname -m` i NAS-en
 
 Eldre 32-bit ARM-utgaver støttes ikke av disse imagene. Begge arkitekturene bruker samme image-navn, så importer bare den som passer din NAS.
 
-Last også ned `filmkveld-nas-1.2.1.zip` med Compose og veiledning. `SHA256SUMS.txt` gir kontrollsummer for begge images og oppsettspakken.
+Last også ned [filmkveld-nas-1.2.1-port8783.zip](https://github.com/Martinpy97/filmkveld/releases/download/v1.2.1/filmkveld-nas-1.2.1-port8783.zip) med Compose og veiledning. Bruk filene merket `port8783`; de eldre oppsettsfilene i samme release er bevart som historikk. `SHA256SUMS-port8783.txt` gir kontrollsummer for dette oppsettet og de uendrede imagene.
 
 ## 2. Importer i Portainer
 
@@ -44,14 +48,16 @@ Bruk `docker load`, ikke `docker import`: Docker-arkivet inneholder startkommand
 
 ## 3. Start med Compose
 
-Pakk ut oppsettspakken i for eksempel `/volume1/docker/filmkveld`. Kopier `.env.example` til `.env` og sett NAS-ens faktiske IP, for eksempel:
+Pakk ut oppsettspakken i for eksempel `/volume1/docker/filmkveld`. Sett NAS-ens faktiske IP direkte i `compose.yaml`: bytt `192.168.1.50` både i `FILMKVELD_ALLOWED_ORIGINS` under `environment:` og først på linjen under `ports:`. Standardporten er **8783**, og ingen `.env`-fil trengs.
 
-```dotenv
-NAS_IP=192.168.1.50
-FILMKVELD_PORT=8787
+```yaml
+environment:
+  FILMKVELD_ALLOWED_ORIGINS: "http://192.168.1.50:8783"
+ports:
+  - "192.168.1.50:8783:8787"
 ```
 
-Kjør i mappen med `compose.yaml` og `.env`:
+Kjør i mappen med `compose.yaml`:
 
 ```sh
 sudo docker compose config --quiet
@@ -59,15 +65,15 @@ sudo docker compose up -d
 sudo docker compose ps
 ```
 
-Åpne **http://192.168.1.50:8787** fra PC eller mobil på samme nettverk. Bruk din faktiske NAS-IP. Endre bare `FILMKVELD_PORT` dersom porten er opptatt; containeren bruker fortsatt 8787 internt.
+Åpne **http://192.168.1.50:8783** fra PC eller mobil på samme nettverk. Bruk din faktiske NAS-IP. Hvis du velger en annen utvendig port, endrer du `8783` både i URL-en under `environment:` og midt i portlinjen; containeren bruker fortsatt siste `8787` internt.
 
 ### Start som Portainer-stack
 
-Bruk **Stacks → Add stack → Web editor**. Lim inn `compose.yaml` og legg til miljøvariablene `NAS_IP` og `FILMKVELD_PORT` nederst i Portainer. Trykk **Deploy the stack**. Velg samme Docker-miljø som imaget ble importert til. Ikke slå på tvungen nedlasting av image.
+Bruk **Stacks → Add stack → Web editor**. Lim inn `compose.yaml` og bytt eksempel-IP-en på de to linjene. La Portainers separate miljøvariabler være tom; innstillingene står direkte under `environment:` i Compose. Trykk **Deploy the stack**. Velg samme Docker-miljø som imaget ble importert til. Ikke slå på tvungen nedlasting av image.
 
 ### Legg sammen med en eksisterende Compose
 
-Flytt `filmkveld:` inn under eksisterende `services:` og `filmkveld-data:` inn under eksisterende `volumes:`. Behold det eksisterende prosjektnavnet; ikke kopier `name: filmkveld` inn i et annet prosjekt. Legg `NAS_IP` og `FILMKVELD_PORT` i det prosjektets `.env` eller Portainer-variabler. Start bare denne tjenesten:
+Flytt `filmkveld:` inn under eksisterende `services:` og `filmkveld-data:` inn under eksisterende `volumes:`. Behold det eksisterende prosjektnavnet; ikke kopier `name: filmkveld` inn i et annet prosjekt. Sett NAS-IP direkte i Filmkvelds `environment:` og `ports:`. Start bare denne tjenesten:
 
 ```sh
 sudo docker compose up -d --no-deps filmkveld
@@ -95,8 +101,8 @@ Oppdatering: ta backup, importer et nytt image, endre taggen under `image:` og k
 - Blank side allerede ved åpning: åpne `http://DIN-NAS-IP:PORT`, kontroller NAS-IP/port i stacken og se etter feilmeldinger i nettleserens konsoll (F12 → Console). «Healthy» alene bekrefter ikke at nettleseren har lastet siden.
 - `image ... not found`: importer riktig image i samme Docker-miljø først; navnet må være `filmkveld:1.2.1`.
 - `exec format error`: imagearkitekturen passer ikke NAS-en.
-- `cannot assign requested address`: `NAS_IP` må være en IP som faktisk tilhører NAS-en.
-- «Adressen er ikke tillatt»: åpne nøyaktig adressen som står i Compose. Et annet vertsnavn må legges eksplisitt til i `FILMKVELD_ALLOWED_ORIGINS`, for eksempel `http://192.168.1.50:8787,http://nas.local:8787`. Behold listen over tillatte adresser; ikke bruk jokertegn.
+- `cannot assign requested address`: IP-en i portlinjen må faktisk tilhøre NAS-en.
+- «Adressen er ikke tillatt»: åpne nøyaktig adressen som står i Compose. Et annet vertsnavn må legges eksplisitt til i `FILMKVELD_ALLOWED_ORIGINS`, for eksempel `http://192.168.1.50:8783,http://nas.local:8783`. Behold listen over tillatte adresser; ikke bruk jokertegn.
 - Se **Containers → Filmkveld → Logs** i Portainer, eller `sudo docker compose logs --tail=60 filmkveld`.
 
 HTTPS via reverse proxy er ikke del av standardoppsettet. Serveren støtter eksplisitte HTTPS-origins; proxyen må bevare Host og ha egen tilgangskontroll dersom den brukes utenfor hjemmenettverket. Forwarded-headere gir ikke automatisk nye tillatte adresser.

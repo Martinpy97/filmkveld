@@ -4,9 +4,10 @@ services:
     image: filmkveld:1.2.1
     pull_policy: never
     environment:
-      FILMKVELD_ALLOWED_ORIGINS: "http://${NAS_IP:?Sett NAS_IP i .env}:${FILMKVELD_PORT:-8787}"
+      # Bytt 192.168.1.50 til din NAS-IP her og under ports.
+      FILMKVELD_ALLOWED_ORIGINS: "http://192.168.1.50:8783"
     ports:
-      - "${NAS_IP:?Sett NAS_IP i .env}:${FILMKVELD_PORT:-8787}:8787"
+      - "192.168.1.50:8783:8787"
     volumes:
       - filmkveld-data:/data
     restart: unless-stopped
