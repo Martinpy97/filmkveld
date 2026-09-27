@@ -1,0 +1,43 @@
+▶ Local Docker collection, cards, HTTP boundaries and durable restart
+  ✔ root, species and set deep links work on HTTP (9.236792ms)
+  ✔ unknown page and private paths do not become the SPA (3.069166ms)
+  ✔ all 1025 species images exist in delivery (186.194875ms)
+  ✔ fresh collections are empty (15.140875ms)
+  ✔ personal responses are never cached (2.436333ms)
+  ✔ wishlist becomes owned and cannot reappear while owned (11.49375ms)
+  ✔ repeated check preserves ownership date (1.320041ms)
+  ✔ client identity headers cannot select another collection (1.413458ms)
+  ✔ 151 includes 207 cards in collector order, Trainers and Energy (0.288791ms)
+  ✔ species and set use the same card and variant identities (4.180084ms)
+  ✔ masterset tracks standard variants and shared ownership (5.470333ms)
+  ✔ normal and reverse are counted separately (1.55325ms)
+  ✔ all variants change denominator without losing cards (1.332625ms)
+  ✔ untracking set preserves cards (1.151541ms)
+  ✔ reject invalid card mutation null (0.591875ms)
+  ✔ reject invalid card mutation [] (0.526959ms)
+  ✔ reject invalid card mutation {} (0.535375ms)
+  ✔ reject invalid card mutation "{broken" (0.597125ms)
+  ✔ reject invalid card mutation {"kind":"card","id":"sv03.5-001","variantId":"unknown","value":true} (0.501334ms)
+  ✔ reject invalid card mutation {"kind":"card","id":"unknown","variantId":"v1-44d820e2d6d1f6b0","value":true} (0.596416ms)
+  ✔ reject invalid card mutation {"kind":"card","id":"sv03.5-001","variantId":"v1-44d820e2d6d1f6b0","value":"true"} (0.723625ms)
+  ✔ reject invalid card mutation {"kind":"card","id":"sv03.5-001","variantId":"v1-44d820e2d6d1f6b0","value":true,"userId":"other"} (0.961083ms)
+  ✔ reject invalid card mutation {"kind":"set","id":"sv03.5","scope":"bad","value":true} (0.758375ms)
+  ✔ reject invalid species data (2.5395ms)
+  ✔ reject invalid catalog queries (2.582125ms)
+  ✔ reject unsupported method, media type and oversized body (1.816209ms)
+  ✔ reject foreign request {"Origin":"https://evil.example"} (0.609333ms)
+  ✔ reject foreign request {"Sec-Fetch-Site":"cross-site"} (0.518917ms)
+  ✔ reject foreign request {"Host":"evil.example"} (2.161541ms)
+  ✔ reject foreign request {"Host":"evil.example","X-Forwarded-Host":"127.0.0.1:18884"} (1.974959ms)
+  ✔ explicit NAS HTTP origin works (1.147209ms)
+  ✔ rejected writes did not change collection (0.957333ms)
+  ✔ uncheck changes only selected variant (2.145375ms)
+✔ Local Docker collection, cards, HTTP boundaries and durable restart (279.121042ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 374.742834

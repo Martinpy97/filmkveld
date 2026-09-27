@@ -1,0 +1,26 @@
+[
+  {
+    "platform": "linux/arm64",
+    "api_suite_passed": true,
+    "node_test_count": 34,
+    "recreated_container_retained_species_cards_and_mastersets": true,
+    "user": "node",
+    "readonly_root": true,
+    "image": "sha256:c37cc7a9a7c61712b933a706627ce052f6a121dc0fc75affa84c49ac5d46e0cf",
+    "test_container": "pokedex-qa-20260927-arm64",
+    "test_port": 18884,
+    "test_volume": "pokedex-qa-20260927-arm64-data"
+  },
+  {
+    "platform": "linux/amd64",
+    "api_suite_passed": true,
+    "node_test_count": 34,
+    "recreated_container_retained_species_cards_and_mastersets": true,
+    "user": "node",
+    "readonly_root": true,
+    "image": "sha256:c37cc7a9a7c61712b933a706627ce052f6a121dc0fc75affa84c49ac5d46e0cf",
+    "test_container": "pokedex-qa-20260927-amd64",
+    "test_port": 18885,
+    "test_volume": "pokedex-qa-20260927-amd64-data"
+  }
+]

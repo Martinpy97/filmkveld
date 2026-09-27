@@ -1,0 +1,21 @@
+# Copy to compose.yaml and replace 192.168.1.50 in both places.
+name: pokedex
+services:
+  pokedex:
+    build: .
+    image: pokedex:1.0.0
+    ports:
+      - "192.168.1.50:8784:8784"
+    environment:
+      POKEDEX_ALLOWED_ORIGINS: "http://192.168.1.50:8784"
+    volumes:
+      - pokedex-data:/data
+    restart: unless-stopped
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    stop_grace_period: 20s
+volumes:
+  pokedex-data:
+    name: pokedex-data

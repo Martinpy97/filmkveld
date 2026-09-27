@@ -1,0 +1,18 @@
+name: pokedex
+services:
+  pokedex:
+    build: .
+    image: pokedex:1.0.0
+    ports:
+      - "127.0.0.1:8784:8784"
+    volumes:
+      - pokedex-data:/data
+    restart: unless-stopped
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    stop_grace_period: 20s
+volumes:
+  pokedex-data:
+    name: pokedex-data

@@ -1,3 +1,7 @@
+# Pokédex Docker — egen gren
+
+Denne grenen inneholder [Pokédex-mappen med startfiler, Docker-oppsett og veiledning](pokedex/README.md). Last ned grenen, åpne `pokedex` og følg veiledningen. Filmkveld-oppsettet nedenfor er bevart.
+
 # Filmkveld 1.2.1 — ferdig Docker-image for NAS
 
 **Bruker du Portainer? Start her: [stegvis oppsett med kopierbar Compose og feilsøking](PORTAINER.md).**

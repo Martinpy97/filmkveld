@@ -1,0 +1,1 @@
+206da5b1442a3bd06fb48e2a2e193162bafa8b2c14c6638ea20e22b2ecace30c  pokedex-docker-1.0.0.zip

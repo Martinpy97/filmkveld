@@ -1,0 +1,73 @@
+{
+  "date": "2026-09-27",
+  "version": "1.0.0",
+  "typecheck": "passed",
+  "production_build": "passed",
+  "local_test_runner": {
+    "tests": 35,
+    "passed": 35,
+    "failed": 0
+  },
+  "container_checks": [
+    {
+      "platform": "linux/arm64",
+      "api_suite_passed": true,
+      "node_test_count": 34,
+      "recreated_container_retained_species_cards_and_mastersets": true,
+      "user": "node",
+      "readonly_root": true,
+      "image": "sha256:c37cc7a9a7c61712b933a706627ce052f6a121dc0fc75affa84c49ac5d46e0cf",
+      "test_container": "pokedex-qa-20260927-arm64",
+      "test_port": 18884,
+      "test_volume": "pokedex-qa-20260927-arm64-data"
+    },
+    {
+      "platform": "linux/amd64",
+      "api_suite_passed": true,
+      "node_test_count": 34,
+      "recreated_container_retained_species_cards_and_mastersets": true,
+      "user": "node",
+      "readonly_root": true,
+      "image": "sha256:c37cc7a9a7c61712b933a706627ce052f6a121dc0fc75affa84c49ac5d46e0cf",
+      "test_container": "pokedex-qa-20260927-amd64",
+      "test_port": 18885,
+      "test_volume": "pokedex-qa-20260927-amd64-data"
+    }
+  ],
+  "browser": {
+    "actual_container": "linux/arm64",
+    "checked": [
+      "Species ownership through checkbox",
+      "Species opens card list",
+      "Card ownership shared with 151 masterset",
+      "Normal and reverse persisted after reload",
+      "Large card dialog and images",
+      "Masterset progress 2/360",
+      "Desktop layout screenshot inspected"
+    ],
+    "origin": "loopback HTTP"
+  },
+  "backup": {
+    "stopped_container_copy": "passed",
+    "sqlite_integrity_check": "ok",
+    "expected_species_cards_and_masterset_present": true
+  },
+  "compose": {
+    "pc_and_nas_validated": true,
+    "port": 8784,
+    "fixed_volume": "pokedex-data"
+  },
+  "catalog": {
+    "pokemon": 1025,
+    "local_pokemon_images": 1025,
+    "sets": 201,
+    "cards": 21290,
+    "card_variants": 34042
+  },
+  "limitations": [
+    "Actual recipient machine and NAS installation not tested",
+    "Windows and macOS double-click launchers not executed",
+    "Card image availability follows remote TCGdex",
+    "Hosted Sites collection not imported"
+  ]
+}
