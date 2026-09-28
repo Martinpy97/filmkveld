@@ -1,0 +1,14 @@
+{
+  "verified_at": "2026-09-28T06:02:44.136811+00:00",
+  "repository": "https://github.com/Martinpy97/filmkveld",
+  "branch": "codex/pokedex-docker",
+  "source_commit": "e1e6eaaa06f6fdad1fd8f48f158b40b2ecaa01c1",
+  "method": "Fresh anonymous GitHub clone over HTTPS; every tracked file compared by SHA-256",
+  "files_verified": 1099,
+  "all_identical": true,
+  "archive": "pokedex/releases/pokedex-docker-1.0.0.zip",
+  "archive_sha256": "206da5b1442a3bd06fb48e2a2e193162bafa8b2c14c6638ea20e22b2ecace30c",
+  "archive_bytes": 19433813,
+  "new_lfs_objects": false,
+  "scope": "Source, local artwork, Docker setup, start files, tests, documentation and ready ZIP; no recipient machine installation"
+}
